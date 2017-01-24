@@ -24,10 +24,9 @@ function inicializaCronometro(){
         tempoRestante--;
         $("#tempo-digitacao").text(tempoRestante);
         if(tempoRestante < 1){
-          $(".campo-digitacao").attr("disabled", true);
           clearInterval(cronometroID);
           $("#botao-reiniciar").attr("disabled", false);
-          campo.toggleClass("campo-desativado");
+          finalizaJogo();
         }
     },1000);
   });
@@ -72,4 +71,10 @@ function reiniciaJogo(){
   campo.toggleClass("campo-desativado");
   campo.removeClass("borda-vermelha");
   campo.removeClass("borda-verde");
+}
+
+function finalizaJogo(){
+  campo.attr("disabled", true);
+  campo.toggleClass("campo-desativado");
+  inserePlacar();
 }
