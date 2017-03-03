@@ -1,3 +1,18 @@
+$("#botao-placar").click(mostraPlacar)
+
+function mostraPlacar(){
+  $(".placar").stop().slideToggle(500);
+}
+
+function scrollPlacar(){
+  var posicaoPlacar = $(".placar").offset().top;
+
+  $("body").animate(
+    {
+      scrollTop: posicaoPlacar + "px"
+    },1000);
+}
+
 function inserePlacar(){
     var corpoTabela = $(".placar").find("tbody");
     var usuario = "pgori";
@@ -7,6 +22,8 @@ function inserePlacar(){
     linha.find(".botao-remover").click(removeLinha);
 
     corpoTabela.append(linha);
+    $(".placar").slideToggle(500);
+    scrollPlacar();
 }
 
 function novaLinha(usuario, palavras) {
@@ -29,5 +46,10 @@ function novaLinha(usuario, palavras) {
 
 function removeLinha(event){
   event.preventDefault();
-  $(this).parent().parent().remove();
+  var linha = $(this).parent().parent();
+
+  linha.fadeOut(1000);
+  setTimeout(function(){
+    linha.remove();
+  },1000);
 }
