@@ -75,13 +75,13 @@ function sincronizaPlacar(){
     placar : placar
   };
 
-  $.post("http://localhost:3000/placar", dados, function(){
+  $.post("http://localhost:3001/placar", dados, function(){
     console.log("Placar sincronizado com sucesso");
   });
 }
 
 function atualizaPlacar(){
-  $.get("http://localhost:3000/placar", function(data){
+  $.get("http://localhost:3001/placar", function(data){
     $(data).each(function(){
       var linha = novaLinha(this.usuario, this.pontos);
 
